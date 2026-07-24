@@ -364,11 +364,31 @@ main{position:relative;z-index:2}
 /* Mobilde kart ekranın tamamını kaplar; iç görsel kırpılmadan en büyük
    boyutunda gösterilir, oran farkından kalan alan bulanık kopyayla dolar. */
 @media (max-width:600px), (orientation:landscape) and (max-height:600px){
+  .opening{
+    min-height:100dvh;
+    padding:0;
+  }
+  .opening-card{
+    width:100vw;
+    height:100dvh;
+    max-width:none;
+    aspect-ratio:auto;
+    filter:none;
+  }
+  .door{
+    background-size:100% 100%;
+  }
+  .door-left,
+  .door-right{
+    border-radius:0;
+  }
   .page{
     position:relative;
     width:100vw;
     height:100svh;
+    height:100dvh;
     min-height:100svh;
+    min-height:100dvh;
     --page-pad-y:0px;
     padding:0;
     gap:0;
@@ -376,8 +396,10 @@ main{position:relative;z-index:2}
   .invitation-card{
     width:100vw;
     height:100svh;
+    height:100dvh;
     max-width:none;
     flex:0 0 100svh;
+    flex-basis:100dvh;
     border-radius:0;
     box-shadow:none;
   }
@@ -396,7 +418,7 @@ main{position:relative;z-index:2}
   }
   .card-frame img,
   .location-card .card-frame img{
-    object-fit:contain;
+    object-fit:fill;
   }
   .hero .invitation-card::before{background-image:url("assets/intro-mobile.jpg")}
   .family-card::before{background-image:url("assets/family-mobile.jpg")}
