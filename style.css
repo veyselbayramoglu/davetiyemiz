@@ -175,11 +175,28 @@ main{position:relative;z-index:2}
   height:auto;
 }
 
-/* Dış kart (.invitation-card) ekranı tam doldurur; iç çerçeve (.card-frame)
-   görseli kırpmadan/bozmadan hem yatayda hem dikeyde tek ekrana sığdırır,
-   artan boşluk kartın kendi zemin rengiyle dolar. */
+/* Dış kart (.invitation-card) ekranı tam doldurur. İç çerçeve (.card-frame)
+   görseli kırpmadan/bozmadan tek ekrana sığdırır; kalan boşluk aynı görselin
+   bulanıklaştırılmış/büyütülmüş bir kopyasıyla doldurulur, düz renk boşluk
+   görünmez. */
+.invitation-card::before{
+  content:"";
+  position:absolute;
+  inset:-20px;
+  background-repeat:no-repeat;
+  background-size:cover;
+  background-position:center;
+  filter:blur(22px) saturate(1.05) brightness(.94);
+  transform:scale(1.15);
+  z-index:0;
+}
+.hero .invitation-card::before{background-image:url("assets/intro.webp")}
+.family-card::before{background-image:url("assets/family.webp")}
+.ceremony-card::before{background-image:url("assets/ceremony.webp")}
+.location-card::before{background-image:url("assets/location.webp")}
 .card-frame{
   position:relative;
+  z-index:1;
   width:100%;
 }
 .hero .card-frame{
