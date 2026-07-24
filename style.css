@@ -177,6 +177,7 @@ main{position:relative;z-index:2}
   width:100%;
   height:auto;
 }
+.card-frame picture{display:block}
 
 /* Dış kart (.invitation-card) ekranı tam doldurur. İç çerçeve (.card-frame)
    görseli kırpmadan/bozmadan tek ekrana sığdırır; kalan boşluk aynı görselin
@@ -380,18 +381,27 @@ main{position:relative;z-index:2}
     border-radius:0;
     box-shadow:none;
   }
-  .hero .card-frame{
-    width:min(100%,calc(100svh * 435 / 526));
-  }
-  .family-card .card-frame{
-    width:min(100%,calc(100svh * 443 / 545));
-  }
-  .ceremony-card .card-frame{
-    width:min(100%,calc(100svh * 437 / 551));
-  }
+  .hero .card-frame,
+  .family-card .card-frame,
+  .ceremony-card .card-frame,
   .location-card .card-frame{
-    width:min(100%,calc(100svh * 1132 / 1390));
+    width:100%;
+    height:100%;
+    aspect-ratio:auto;
   }
+  .card-frame picture,
+  .card-frame img{
+    width:100%;
+    height:100%;
+  }
+  .card-frame img,
+  .location-card .card-frame img{
+    object-fit:cover;
+  }
+  .hero .invitation-card::before{background-image:url("assets/intro-mobile.jpg")}
+  .family-card::before{background-image:url("assets/family-mobile.jpg")}
+  .ceremony-card::before{background-image:url("assets/ceremony-mobile.jpg")}
+  .location-card::before{background-image:url("assets/location-mobile.jpg")}
   .scroll-cue{
     position:absolute;
     left:50%;
@@ -400,6 +410,11 @@ main{position:relative;z-index:2}
     transform:translateX(-50%);
     background:rgba(246,239,229,.72);
   }
+}
+
+@media (orientation:landscape) and (max-height:600px){
+  .card-frame img,
+  .location-card .card-frame img{object-fit:contain}
 }
 
 @media (prefers-reduced-motion:reduce){
