@@ -57,7 +57,7 @@ main{position:relative;z-index:2}
   position:fixed;
   inset:0;
   z-index:50;
-  display:grid;
+  display:none;
   place-items:center;
   width:100%;
   min-height:100vh;
@@ -73,6 +73,7 @@ main{position:relative;z-index:2}
     linear-gradient(135deg,#e9dfd1,#f8f2e9 52%,#e5d8c7);
   transition:opacity .9s ease,visibility .9s ease;
 }
+.js .opening{display:grid}
 .opening.opened{opacity:0;visibility:hidden;pointer-events:none}
 .opening-card{
   position:relative;
@@ -164,9 +165,11 @@ main{position:relative;z-index:2}
   overflow:hidden;
   box-shadow:var(--shadow);
   background:#f7f0e7;
+  transition:transform 1s cubic-bezier(.2,.72,.2,1),opacity 1s ease;
+}
+.js .invitation-card{
   transform:translateY(18px) scale(.985);
   opacity:0;
-  transition:transform 1s cubic-bezier(.2,.72,.2,1),opacity 1s ease;
 }
 .reveal.visible .invitation-card{transform:none;opacity:1}
 .invitation-card img{
@@ -355,6 +358,48 @@ main{position:relative;z-index:2}
   .family-card .card-frame{width:min(100%,calc((100svh - var(--page-pad-y)) * 443 / 545))}
   .ceremony-card .card-frame{width:min(100%,calc((100svh - var(--page-pad-y)) * 437 / 551))}
   .location-card .card-frame{width:min(100%,calc((100svh - var(--page-pad-y)) * 1132 / 1390))}
+}
+
+/* Mobilde kart ekranın tamamını kaplar; iç görsel kırpılmadan en büyük
+   boyutunda gösterilir, oran farkından kalan alan bulanık kopyayla dolar. */
+@media (max-width:600px), (orientation:landscape) and (max-height:600px){
+  .page{
+    position:relative;
+    width:100vw;
+    height:100svh;
+    min-height:100svh;
+    --page-pad-y:0px;
+    padding:0;
+    gap:0;
+  }
+  .invitation-card{
+    width:100vw;
+    height:100svh;
+    max-width:none;
+    flex:0 0 100svh;
+    border-radius:0;
+    box-shadow:none;
+  }
+  .hero .card-frame{
+    width:min(100%,calc(100svh * 435 / 526));
+  }
+  .family-card .card-frame{
+    width:min(100%,calc(100svh * 443 / 545));
+  }
+  .ceremony-card .card-frame{
+    width:min(100%,calc(100svh * 437 / 551));
+  }
+  .location-card .card-frame{
+    width:min(100%,calc(100svh * 1132 / 1390));
+  }
+  .scroll-cue{
+    position:absolute;
+    left:50%;
+    bottom:max(12px,var(--safe-b));
+    z-index:6;
+    transform:translateX(-50%);
+    background:rgba(246,239,229,.72);
+  }
 }
 
 @media (prefers-reduced-motion:reduce){

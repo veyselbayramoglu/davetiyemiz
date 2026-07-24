@@ -1,5 +1,7 @@
 
+document.documentElement.classList.add("js");
 const body = document.body;
+body.classList.add("locked");
 const opening = document.getElementById("opening");
 const seal = document.getElementById("seal");
 const toast = document.getElementById("toast");
@@ -42,13 +44,16 @@ document.getElementById("calendarButton").addEventListener("click", () => {
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
     "PRODID:-//Zeyneb ve Veysel//Nikah Davetiyesi//TR",
+    "CALSCALE:GREGORIAN",
+    "METHOD:PUBLISH",
+    "X-WR-CALNAME:Zeyneb & Veysel Nikâh Töreni",
     "BEGIN:VEVENT",
     "UID:zeyneb-veysel-20260823@example.com",
     "DTSTAMP:20260724T090000Z",
     "DTSTART:20260823T123000Z",
     "DTEND:20260823T143000Z",
     "SUMMARY:Zeyneb & Veysel Nikâh Töreni",
-    "LOCATION:Üsküdar Nikah Sarayı, Mimar Sinan, Çavuşdere Cd. No:35, Üsküdar/İstanbul",
+    "LOCATION:Üsküdar Nikah Sarayı\\, Mimar Sinan\\, Çavuşdere Cd. No:35\\, Üsküdar/İstanbul",
     "DESCRIPTION:Gülümsememize şahit olun.",
     "END:VEVENT",
     "END:VCALENDAR"
