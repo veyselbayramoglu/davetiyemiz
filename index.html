@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <title>Zeyneb & Veysel | Davetiyemiz</title>
+
+  <meta name="theme-color" content="#f3eadf">
+
+  <meta property="og:type" content="website">
+
+  <meta property="og:url"
+        content="https://veyselbayramoglu.github.io/zeynebveysel/">
+
+  <meta property="og:image"
+        content="https://veyselbayramoglu.github.io/zeynebveysel/assets/preview.jpg">
+
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image"
+        content="https://veyselbayramoglu.github.io/zeynebveysel/assets/preview.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,500&family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="locked">
+  <div class="ambient" aria-hidden="true"></div>
+
+  <main>
+    <section id="opening" class="opening" aria-label="Davetiyeyi aç">
+      <div class="opening-card">
+        <div class="door door-left"></div>
+        <div class="door door-right"></div>
+
+        <button id="seal" class="seal" type="button" aria-label="Davetiyeyi aç">
+          <span>Z&amp;V</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="page hero reveal" aria-label="Zeyneb ve Veysel">
+      <figure class="invitation-card">
+        <img src="assets/intro.webp" alt="Zeyneb ve Veysel nikâh davetiyesi">
+      </figure>
+      <div class="scroll-cue" aria-hidden="true"><span></span></div>
+    </section>
+
+    <section class="page reveal" aria-label="Aileler">
+      <figure class="invitation-card family-card">
+        <img src="assets/family.webp" alt="Karabıyık Ailesi ve Bayramoğlu Ailesi">
+      </figure>
+    </section>
+
+    <section class="page reveal" aria-label="Nikâh bilgileri">
+      <figure class="invitation-card ceremony-card">
+        <img src="assets/ceremony.webp" alt="Nikâh töreni: 23 Ağustos 2026 Pazar, saat 15.30, Üsküdar Nikah Sarayı">
+        <div class="inside-actions ceremony-actions">
+          <a class="gold-button compact" href="#location">Konuma Git</a>
+          <button class="ghost-button compact" id="calendarButton" type="button">Takvime Ekle</button>
+        </div>
+      </figure>
+    </section>
+
+    <section id="location" class="page reveal" aria-label="Konum">
+      <figure class="invitation-card location-card">
+        <img src="assets/location.webp" alt="Üsküdar Nikah Sarayı, Mimar Sinan, Çavuşdere Caddesi No 35, Üsküdar İstanbul">
+        <a class="gold-button location-route" target="_blank" rel="noopener"
+           href="https://www.google.com/maps/search/?api=1&query=%C3%9Csk%C3%BCdar+Nikah+Saray%C4%B1%2C+Mimar+Sinan%2C+%C3%87avu%C5%9Fdere+Cd.+No%3A35%2C+%C3%9Csk%C3%BCdar%2F%C4%B0stanbul">
+          Yol Tarifi
+        </a>
+        <div class="inside-names">Zeyneb <span>&amp;</span> Veysel</div>
+      </figure>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
