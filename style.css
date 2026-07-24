@@ -155,6 +155,11 @@ main{position:relative;z-index:2}
   margin:0;
   width:min(96vw,460px);
   max-width:100%;
+  flex:1 1 auto;
+  min-height:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   border-radius:28px;
   overflow:hidden;
   box-shadow:var(--shadow);
@@ -170,21 +175,27 @@ main{position:relative;z-index:2}
   height:auto;
 }
 
-/* Her kart hem yatayda hem dikeyde tek ekrana sığar. */
-.hero .invitation-card{
-  width:min(96vw,460px,calc((100svh - var(--page-pad-y) - 50px) * 435 / 526));
+/* Dış kart (.invitation-card) ekranı tam doldurur; iç çerçeve (.card-frame)
+   görseli kırpmadan/bozmadan hem yatayda hem dikeyde tek ekrana sığdırır,
+   artan boşluk kartın kendi zemin rengiyle dolar. */
+.card-frame{
+  position:relative;
+  width:100%;
 }
-.family-card{
-  width:min(96vw,460px,calc((100svh - var(--page-pad-y)) * 443 / 545));
+.hero .card-frame{
+  width:min(100%,calc((100svh - var(--page-pad-y) - 50px) * 435 / 526));
 }
-.ceremony-card{
-  width:min(96vw,460px,calc((100svh - var(--page-pad-y)) * 437 / 551));
+.family-card .card-frame{
+  width:min(100%,calc((100svh - var(--page-pad-y)) * 443 / 545));
 }
-.location-card{
-  width:min(96vw,460px,calc((100svh - var(--page-pad-y)) * 1132 / 1390));
+.ceremony-card .card-frame{
+  width:min(100%,calc((100svh - var(--page-pad-y)) * 437 / 551));
+}
+.location-card .card-frame{
+  width:min(100%,calc((100svh - var(--page-pad-y)) * 1132 / 1390));
   aspect-ratio:1132/1390;
 }
-.location-card img{
+.location-card .card-frame img{
   width:100%;
   height:100%;
   object-fit:contain;
@@ -314,6 +325,7 @@ main{position:relative;z-index:2}
 
 @media (orientation:landscape) and (max-height:600px){
   .opening-card{width:min(72vw,calc((100svh - var(--open-pad-y)) * 444 / 527))}
+  .invitation-card{width:min(72vw,460px)}
   .page{
     --page-pad-y:calc(max(6px,var(--safe-t)) + max(6px,var(--safe-b)));
     padding:
@@ -322,10 +334,10 @@ main{position:relative;z-index:2}
       max(6px,var(--safe-b))
       max(6px,var(--safe-l));
   }
-  .hero .invitation-card{width:min(72vw,calc((100svh - var(--page-pad-y) - 50px) * 435 / 526))}
-  .family-card{width:min(72vw,calc((100svh - var(--page-pad-y)) * 443 / 545))}
-  .ceremony-card{width:min(72vw,calc((100svh - var(--page-pad-y)) * 437 / 551))}
-  .location-card{width:min(72vw,calc((100svh - var(--page-pad-y)) * 1132 / 1390))}
+  .hero .card-frame{width:min(100%,calc((100svh - var(--page-pad-y) - 50px) * 435 / 526))}
+  .family-card .card-frame{width:min(100%,calc((100svh - var(--page-pad-y)) * 443 / 545))}
+  .ceremony-card .card-frame{width:min(100%,calc((100svh - var(--page-pad-y)) * 437 / 551))}
+  .location-card .card-frame{width:min(100%,calc((100svh - var(--page-pad-y)) * 1132 / 1390))}
 }
 
 @media (prefers-reduced-motion:reduce){
