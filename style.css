@@ -396,7 +396,7 @@ main{position:relative;z-index:2}
   }
   .card-frame img,
   .location-card .card-frame img{
-    object-fit:cover;
+    object-fit:contain;
   }
   .hero .invitation-card::before{background-image:url("assets/intro-mobile.jpg")}
   .family-card::before{background-image:url("assets/family-mobile.jpg")}
