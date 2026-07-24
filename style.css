@@ -110,30 +110,21 @@ main{position:relative;z-index:2}
 .opened .door-left{transform:rotateY(-106deg)}
 .opened .door-right{transform:rotateY(106deg)}
 .seal{
-  position:absolute;
-  left:50%;
-  top:48%;
-  transform:translate(-50%,-50%);
-  width:112px;
-  height:112px;
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
   border:0;
-  border-radius:50%;
+  border-radius:inherit;
   cursor:pointer;
-  background:
-    radial-gradient(circle at 36% 28%,#f9d890 0 6%,#c78a29 28%,#9b5e10 61%,#6e3d07 100%);
-  box-shadow:
-    inset 0 0 0 4px rgba(255,228,164,.55),
-    inset 0 0 0 8px rgba(92,46,4,.25),
-    0 12px 28px rgba(72,40,9,.38);
-  color:#fff1c9;
-  text-shadow:0 1px 2px #563008;
-  font-family:"Great Vibes",cursive;
-  font-size:35px;
-  transition:transform .25s ease,opacity .45s ease;
+  background:transparent;
+  box-shadow:none;
+  color:transparent;
+  transition:opacity .45s ease;
 }
-.seal:hover{transform:translate(-50%,-50%) scale(1.05)}
-.seal small,.opening-hint{display:none!important}
-.opened .seal{transform:translate(-50%,-50%) scale(.45) rotate(-18deg);opacity:0}
+.seal span,.seal small,.opening-hint{display:none!important}
+.seal:focus-visible{outline:3px solid rgba(180,122,31,.75);outline-offset:-6px}
+.opened .seal{opacity:0}
 
 /* Davetiye sayfaları */
 .page{
@@ -338,7 +329,6 @@ main{position:relative;z-index:2}
   .door-left{border-radius:25px 0 0 25px}
   .door-right{border-radius:0 25px 25px 0}
   .invitation-card{border-radius:24px}
-  .seal{width:96px;height:96px;font-size:31px}
   .compact{font-size:15px;padding:9px 6px}
   .inside-names{font-size:29px}
   .location-route{width:56%;font-size:17px}
@@ -364,13 +354,17 @@ main{position:relative;z-index:2}
 /* Mobilde kart ekranın tamamını kaplar; iç görsel kırpılmadan en büyük
    boyutunda gösterilir, oran farkından kalan alan bulanık kopyayla dolar. */
 @media (max-width:600px), (orientation:landscape) and (max-height:600px){
+  html{
+    scroll-snap-type:y mandatory;
+    scroll-padding:0;
+  }
   .opening{
-    min-height:100dvh;
+    min-height:100svh;
     padding:0;
   }
   .opening-card{
     width:100vw;
-    height:100dvh;
+    height:100svh;
     max-width:none;
     aspect-ratio:auto;
     filter:none;
@@ -386,30 +380,40 @@ main{position:relative;z-index:2}
     position:relative;
     width:100vw;
     height:100svh;
-    height:100dvh;
     min-height:100svh;
-    min-height:100dvh;
     --page-pad-y:0px;
     padding:0;
     gap:0;
+    scroll-snap-align:start;
+    scroll-snap-stop:always;
   }
   .invitation-card{
     width:100vw;
     height:100svh;
-    height:100dvh;
     max-width:none;
     flex:0 0 100svh;
-    flex-basis:100dvh;
     border-radius:0;
     box-shadow:none;
+    background:#f8f0e6;
   }
-  .hero .card-frame,
-  .family-card .card-frame,
-  .ceremony-card .card-frame,
+  .invitation-card::before{
+    display:none;
+  }
+  .hero .card-frame{
+    width:min(100vw,calc(100svh * 851 / 1849));
+    aspect-ratio:851/1849;
+  }
+  .family-card .card-frame{
+    width:min(100vw,calc(100svh * 852 / 1846));
+    aspect-ratio:852/1846;
+  }
+  .ceremony-card .card-frame{
+    width:min(100vw,calc(100svh * 853 / 1844));
+    aspect-ratio:853/1844;
+  }
   .location-card .card-frame{
-    width:100%;
-    height:100%;
-    aspect-ratio:auto;
+    width:min(100vw,calc(100svh * 852 / 1846));
+    aspect-ratio:852/1846;
   }
   .card-frame picture,
   .card-frame img{
@@ -418,12 +422,8 @@ main{position:relative;z-index:2}
   }
   .card-frame img,
   .location-card .card-frame img{
-    object-fit:fill;
+    object-fit:contain;
   }
-  .hero .invitation-card::before{background-image:url("assets/intro-mobile.jpg")}
-  .family-card::before{background-image:url("assets/family-mobile.jpg")}
-  .ceremony-card::before{background-image:url("assets/ceremony-mobile.jpg")}
-  .location-card::before{background-image:url("assets/location-mobile.jpg")}
   .scroll-cue{
     position:absolute;
     left:50%;
@@ -435,6 +435,22 @@ main{position:relative;z-index:2}
 }
 
 @media (orientation:landscape) and (max-height:600px){
+  .hero .card-frame{
+    width:min(100vw,calc(100svh * 435 / 526));
+    aspect-ratio:435/526;
+  }
+  .family-card .card-frame{
+    width:min(100vw,calc(100svh * 443 / 545));
+    aspect-ratio:443/545;
+  }
+  .ceremony-card .card-frame{
+    width:min(100vw,calc(100svh * 437 / 551));
+    aspect-ratio:437/551;
+  }
+  .location-card .card-frame{
+    width:min(100vw,calc(100svh * 1132 / 1390));
+    aspect-ratio:1132/1390;
+  }
   .card-frame img,
   .location-card .card-frame img{object-fit:contain}
 }
