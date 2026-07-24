@@ -5,6 +5,10 @@
   --gold:#b47a1f;
   --gold-dark:#8a5a14;
   --shadow:0 28px 70px rgba(74,51,28,.22);
+  --safe-t:env(safe-area-inset-top,0px);
+  --safe-r:env(safe-area-inset-right,0px);
+  --safe-b:env(safe-area-inset-bottom,0px);
+  --safe-l:env(safe-area-inset-left,0px);
 }
 
 *{box-sizing:border-box}
@@ -58,11 +62,12 @@ main{position:relative;z-index:2}
   width:100%;
   min-height:100vh;
   min-height:100svh;
+  --open-pad-y:calc(max(8px,var(--safe-t)) + max(8px,var(--safe-b)));
   padding:
-    max(8px,env(safe-area-inset-top))
-    max(8px,env(safe-area-inset-right))
-    max(8px,env(safe-area-inset-bottom))
-    max(8px,env(safe-area-inset-left));
+    max(8px,var(--safe-t))
+    max(8px,var(--safe-r))
+    max(8px,var(--safe-b))
+    max(8px,var(--safe-l));
   background:
     radial-gradient(circle at center,rgba(255,255,255,.35),transparent 35%),
     linear-gradient(135deg,#e9dfd1,#f8f2e9 52%,#e5d8c7);
@@ -71,7 +76,7 @@ main{position:relative;z-index:2}
 .opening.opened{opacity:0;visibility:hidden;pointer-events:none}
 .opening-card{
   position:relative;
-  width:min(96vw,460px,calc((100svh - 24px) * 444 / 527));
+  width:min(96vw,460px,calc((100svh - var(--open-pad-y)) * 444 / 527));
   max-width:100%;
   aspect-ratio:444/527;
   perspective:1400px;
@@ -138,11 +143,12 @@ main{position:relative;z-index:2}
   align-items:center;
   justify-content:center;
   gap:14px;
+  --page-pad-y:calc(max(12px,var(--safe-t)) + max(12px,var(--safe-b)));
   padding:
-    max(12px,env(safe-area-inset-top))
-    max(8px,env(safe-area-inset-right))
-    max(12px,env(safe-area-inset-bottom))
-    max(8px,env(safe-area-inset-left));
+    max(12px,var(--safe-t))
+    max(8px,var(--safe-r))
+    max(12px,var(--safe-b))
+    max(8px,var(--safe-l));
 }
 .invitation-card{
   position:relative;
@@ -166,16 +172,16 @@ main{position:relative;z-index:2}
 
 /* Her kart hem yatayda hem dikeyde tek ekrana sığar. */
 .hero .invitation-card{
-  width:min(96vw,460px,calc((100svh - 78px) * 435 / 526));
+  width:min(96vw,460px,calc((100svh - var(--page-pad-y) - 50px) * 435 / 526));
 }
 .family-card{
-  width:min(96vw,460px,calc((100svh - 28px) * 443 / 545));
+  width:min(96vw,460px,calc((100svh - var(--page-pad-y)) * 443 / 545));
 }
 .ceremony-card{
-  width:min(96vw,460px,calc((100svh - 28px) * 437 / 551));
+  width:min(96vw,460px,calc((100svh - var(--page-pad-y)) * 437 / 551));
 }
 .location-card{
-  width:min(96vw,460px,calc((100svh - 28px) * 1132 / 1390));
+  width:min(96vw,460px,calc((100svh - var(--page-pad-y)) * 1132 / 1390));
   aspect-ratio:1132/1390;
 }
 .location-card img{
@@ -295,7 +301,7 @@ main{position:relative;z-index:2}
 
 @media (max-width:480px){
   .opening-card{
-    width:min(97vw,440px,calc((100svh - 16px) * 444 / 527));
+    width:min(97vw,440px,calc((100svh - var(--open-pad-y)) * 444 / 527));
   }
   .door-left{border-radius:25px 0 0 25px}
   .door-right{border-radius:0 25px 25px 0}
@@ -307,12 +313,19 @@ main{position:relative;z-index:2}
 }
 
 @media (orientation:landscape) and (max-height:600px){
-  .opening-card{width:min(72vw,calc((100svh - 12px) * 444 / 527))}
-  .page{padding:6px}
-  .hero .invitation-card{width:min(72vw,calc((100svh - 50px) * 435 / 526))}
-  .family-card{width:min(72vw,calc((100svh - 12px) * 443 / 545))}
-  .ceremony-card{width:min(72vw,calc((100svh - 12px) * 437 / 551))}
-  .location-card{width:min(72vw,calc((100svh - 12px) * 1132 / 1390))}
+  .opening-card{width:min(72vw,calc((100svh - var(--open-pad-y)) * 444 / 527))}
+  .page{
+    --page-pad-y:calc(max(6px,var(--safe-t)) + max(6px,var(--safe-b)));
+    padding:
+      max(6px,var(--safe-t))
+      max(6px,var(--safe-r))
+      max(6px,var(--safe-b))
+      max(6px,var(--safe-l));
+  }
+  .hero .invitation-card{width:min(72vw,calc((100svh - var(--page-pad-y) - 50px) * 435 / 526))}
+  .family-card{width:min(72vw,calc((100svh - var(--page-pad-y)) * 443 / 545))}
+  .ceremony-card{width:min(72vw,calc((100svh - var(--page-pad-y)) * 437 / 551))}
+  .location-card{width:min(72vw,calc((100svh - var(--page-pad-y)) * 1132 / 1390))}
 }
 
 @media (prefers-reduced-motion:reduce){
