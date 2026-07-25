@@ -413,7 +413,7 @@ main{position:relative;z-index:2}
     padding:0;
     gap:0;
     scroll-snap-align:start;
-    scroll-snap-stop:normal;
+    scroll-snap-stop:always;
   }
   .invitation-card{
     width:100vw;
@@ -521,7 +521,7 @@ main::before{
     max(28px,var(--safe-l));
   background:none;
   scroll-snap-align:start;
-  scroll-snap-stop:normal;
+  scroll-snap-stop:always;
   cursor:pointer;
   -webkit-tap-highlight-color:transparent;
   -webkit-user-select:none;
