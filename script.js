@@ -70,6 +70,27 @@ const observer = new IntersectionObserver((entries) => {
 },{threshold:.22});
 document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
+const weddingDate = new Date("2026-08-23T15:30:00+03:00");
+const countdownParts = {
+  days: document.getElementById("countdownDays"),
+  hours: document.getElementById("countdownHours"),
+  minutes: document.getElementById("countdownMinutes"),
+  seconds: document.getElementById("countdownSeconds")
+};
+
+function updateCountdown(){
+  const remaining = Math.max(0, weddingDate.getTime() - Date.now());
+  const totalSeconds = Math.floor(remaining / 1000);
+
+  countdownParts.days.textContent = Math.floor(totalSeconds / 86400);
+  countdownParts.hours.textContent = String(Math.floor(totalSeconds / 3600) % 24).padStart(2, "0");
+  countdownParts.minutes.textContent = String(Math.floor(totalSeconds / 60) % 60).padStart(2, "0");
+  countdownParts.seconds.textContent = String(totalSeconds % 60).padStart(2, "0");
+}
+
+updateCountdown();
+window.setInterval(updateCountdown, 1000);
+
 const pages = [...document.querySelectorAll(".page")];
 
 pages.forEach((page, index) => {

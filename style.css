@@ -620,6 +620,34 @@ main::before{
 }
 .ceremony-content,
 .location-content{--content-scale:.86}
+.countdown{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:7px;
+  width:100%;
+  margin:-6px 0 16px;
+}
+.countdown div{
+  padding:8px 3px 7px;
+  border:1px solid rgba(180,122,31,.3);
+  border-radius:13px;
+  background:rgba(255,255,255,.2);
+}
+.countdown strong,
+.countdown span{display:block}
+.countdown strong{
+  color:var(--gold-dark);
+  font-size:clamp(23px,5.5vw,31px);
+  font-weight:500;
+  line-height:1;
+  font-variant-numeric:tabular-nums;
+}
+.countdown span{
+  margin-top:4px;
+  color:var(--ink);
+  font-size:clamp(11px,2.8vw,14px);
+  line-height:1;
+}
 .section-title{
   margin:0;
   color:var(--gold-dark);
@@ -716,6 +744,37 @@ main::before{
   font:clamp(36px,9vw,56px)/1 "Great Vibes",cursive;
 }
 .closing-names span{color:var(--gold)}
+.photo-content{--content-scale:.9}
+.photo-icon{
+  display:block;
+  width:clamp(76px,19vw,104px);
+  height:clamp(76px,19vw,104px);
+  margin:0 auto 18px;
+  fill:none;
+  stroke:var(--gold-dark);
+  stroke-width:2.4;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.photo-icon path[d*=".1"]{stroke-width:5}
+.photo-description{
+  max-width:440px;
+  margin:0 auto;
+  font-size:clamp(23px,5.6vw,33px);
+  font-style:italic;
+  font-weight:500;
+  line-height:1.35;
+}
+.photo-upload-button{
+  display:inline-block;
+  width:min(260px,82%);
+  margin-top:28px;
+}
+.photo-note{
+  margin:12px 0 0;
+  color:#76501c;
+  font-size:15px;
+}
 .sr-only{
   position:absolute;
   width:1px;
@@ -739,6 +798,10 @@ main::before{
   .invitation-content{padding:20px}
   .invitation-lead{margin-bottom:22px}
   .ceremony-details div{padding:10px 4px}
+  .countdown{
+    margin:-4px 0 10px;
+  }
+  .countdown div{padding:6px 2px}
   .ornament{margin:8px 0 14px}
   .content-actions{margin-top:12px}
 }
