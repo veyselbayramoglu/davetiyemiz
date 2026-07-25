@@ -169,6 +169,7 @@ function showFirstVisitHint(page){
     if(!content) return;
 
     hintedPages.add(page);
+    page.classList.add("first-visit-hinting");
     content.classList.add("first-visit-nudge");
   }, 1100);
 
@@ -193,15 +194,16 @@ const pageHintObserver = new IntersectionObserver(entries => {
 pages.forEach((page, index) => {
   pageHintObserver.observe(page);
 
-  const cue = document.createElement("div");
-  const isLastPage = index === pages.length - 1;
-  cue.className = `page-cue${isLastPage ? " page-cue-up" : ""}`;
-  cue.setAttribute("aria-hidden", "true");
+  if(index < pages.length - 1){
+    const cue = document.createElement("div");
+    cue.className = "page-cue page-cue-up";
+    cue.setAttribute("aria-hidden", "true");
 
-  const cueText = document.createElement("span");
-  cueText.textContent = isLastPage ? "Yukarı kaydır" : "Kaydır veya dokun";
-  cue.appendChild(cueText);
-  page.appendChild(cue);
+    const cueText = document.createElement("span");
+    cueText.textContent = "Kaydır";
+    cue.appendChild(cueText);
+    page.appendChild(cue);
+  }
 
   page.addEventListener("click", event => {
     if(event.target.closest("a,button")) return;

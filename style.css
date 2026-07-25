@@ -290,20 +290,18 @@ main{
   height:8px;
   border-right:1.5px solid currentColor;
   border-bottom:1.5px solid currentColor;
-  transform:rotate(45deg);
-  animation:cueMove 1.8s ease-in-out infinite;
-}
-.page-cue-up::after{
   transform:rotate(225deg);
-  animation-name:cueMoveUp;
 }
-@keyframes cueMove{
-  0%,100%{opacity:.25;transform:translateY(-2px) rotate(45deg)}
-  50%{opacity:1;transform:translateY(4px) rotate(45deg)}
+.first-visit-hinting .page-cue{
+  animation:firstVisitNudge 3.8s cubic-bezier(.35,.05,.2,1) infinite;
 }
-@keyframes cueMoveUp{
-  0%,100%{opacity:.25;transform:translateY(2px) rotate(225deg)}
-  50%{opacity:1;transform:translateY(-4px) rotate(225deg)}
+.first-visit-hinting .page-cue::after{
+  animation:cuePulse 3.8s ease-in-out infinite;
+}
+@keyframes cuePulse{
+  0%,24%,100%{opacity:.35}
+  44%,62%{opacity:1}
+  82%{opacity:.35}
 }
 
 /* Kart içi butonlar */
