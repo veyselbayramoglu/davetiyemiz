@@ -70,74 +70,153 @@
 
     <section class="page reveal" aria-labelledby="ceremonyTitle">
       <article class="invitation-content ceremony-content">
-        <h2 id="ceremonyTitle" class="section-title">Nikâh Töreni</h2>
+        <h2 id="ceremonyTitle" class="section-title">Davet Programı</h2>
         <div class="ornament" aria-hidden="true"><span></span>◆<span></span></div>
-        <div class="countdown" id="weddingCountdown"
-             role="timer" aria-label="Nikâh törenine kalan süre">
-          <div><strong id="countdownDays">0</strong><span>Gün</span></div>
-          <div><strong id="countdownHours">0</strong><span>Saat</span></div>
-          <div><strong id="countdownMinutes">0</strong><span>Dakika</span></div>
-          <div><strong id="countdownSeconds">0</strong><span>Saniye</span></div>
+        <div class="countdown-group">
+          <section class="countdown-block">
+            <p class="countdown-label">Kınaya kalan süre</p>
+            <div class="countdown" id="hennaCountdown"
+                 role="timer" aria-label="Kına gecesine kalan süre">
+              <div><strong id="hennaCountdownDays">0</strong><span>Gün</span></div>
+              <div><strong id="hennaCountdownHours">0</strong><span>Saat</span></div>
+              <div><strong id="hennaCountdownMinutes">0</strong><span>Dakika</span></div>
+              <div><strong id="hennaCountdownSeconds">0</strong><span>Saniye</span></div>
+            </div>
+          </section>
+          <section class="countdown-block">
+            <p class="countdown-label">Nikâha kalan süre</p>
+            <div class="countdown" id="weddingCountdown"
+                 role="timer" aria-label="Nikâh törenine kalan süre">
+              <div><strong id="countdownDays">0</strong><span>Gün</span></div>
+              <div><strong id="countdownHours">0</strong><span>Saat</span></div>
+              <div><strong id="countdownMinutes">0</strong><span>Dakika</span></div>
+              <div><strong id="countdownSeconds">0</strong><span>Saniye</span></div>
+            </div>
+          </section>
         </div>
-        <dl class="ceremony-details">
-          <div>
-            <dt>
-              <span class="sr-only">Tarih</span>
-              <svg class="detail-icon" viewBox="0 0 48 48" aria-hidden="true">
-                <rect x="7" y="10" width="34" height="31" rx="4"></rect>
-                <path d="M15 6v9M33 6v9M7 19h34"></path>
-                <path d="M15 26h.1M24 26h.1M33 26h.1M15 34h.1M24 34h.1M33 34h.1"></path>
-              </svg>
-            </dt>
-            <dd><time datetime="2026-08-23">23 Ağustos 2026<br>Pazar</time></dd>
-          </div>
-          <div>
-            <dt>
-              <span class="sr-only">Saat</span>
-              <svg class="detail-icon" viewBox="0 0 48 48" aria-hidden="true">
-                <circle cx="24" cy="24" r="18"></circle>
-                <path d="M24 13v12l8 5"></path>
-              </svg>
-            </dt>
-            <dd><time datetime="15:30">15:30</time></dd>
-          </div>
-          <div>
-            <dt>
-              <span class="sr-only">Adres</span>
-              <svg class="detail-icon pin-icon" viewBox="0 0 48 48" aria-hidden="true">
-                <path d="M24 44s15-14 15-27A15 15 0 0 0 9 17c0 13 15 27 15 27Z"></path>
-                <circle cx="24" cy="17" r="5"></circle>
-              </svg>
-            </dt>
-            <dd>Üsküdar Nikah Sarayı<br><small>Mimar Sinan, Çavuşdere Cd.<br>No: 35, Üsküdar/İstanbul</small></dd>
-          </div>
-        </dl>
+        <div class="event-grid">
+          <section class="event-card" aria-labelledby="weddingEventTitle">
+            <h3 id="weddingEventTitle">Nikâh</h3>
+            <dl class="event-details">
+              <div>
+                <dt>
+                  <span class="sr-only">Nikâh tarihi</span>
+                  <svg class="detail-icon" viewBox="0 0 48 48" aria-hidden="true">
+                    <rect x="7" y="10" width="34" height="31" rx="4"></rect>
+                    <path d="M15 6v9M33 6v9M7 19h34"></path>
+                    <path d="M15 26h.1M24 26h.1M33 26h.1M15 34h.1M24 34h.1M33 34h.1"></path>
+                  </svg>
+                </dt>
+                <dd><time datetime="2026-08-23">23 Ağustos 2026<br>Pazar</time></dd>
+              </div>
+              <div>
+                <dt>
+                  <span class="sr-only">Nikâh saati</span>
+                  <svg class="detail-icon" viewBox="0 0 48 48" aria-hidden="true">
+                    <circle cx="24" cy="24" r="18"></circle>
+                    <path d="M24 13v12l8 5"></path>
+                  </svg>
+                </dt>
+                <dd><time datetime="15:30">15:30</time></dd>
+              </div>
+              <div>
+                <dt>
+                  <span class="sr-only">Nikâh adresi</span>
+                  <svg class="detail-icon pin-icon" viewBox="0 0 48 48" aria-hidden="true">
+                    <path d="M24 44s15-14 15-27A15 15 0 0 0 9 17c0 13 15 27 15 27Z"></path>
+                    <circle cx="24" cy="17" r="5"></circle>
+                  </svg>
+                </dt>
+                <dd>Üsküdar Nikah Sarayı<br><small>Mimar Sinan, Çavuşdere Cd. No: 35, Üsküdar/İstanbul</small></dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="event-card" aria-labelledby="hennaEventTitle">
+            <h3 id="hennaEventTitle">Kına</h3>
+            <dl class="event-details">
+              <div>
+                <dt>
+                  <span class="sr-only">Kına tarihi</span>
+                  <svg class="detail-icon" viewBox="0 0 48 48" aria-hidden="true">
+                    <rect x="7" y="10" width="34" height="31" rx="4"></rect>
+                    <path d="M15 6v9M33 6v9M7 19h34"></path>
+                    <path d="M15 26h.1M24 26h.1M33 26h.1M15 34h.1M24 34h.1M33 34h.1"></path>
+                  </svg>
+                </dt>
+                <dd><time datetime="2026-08-21">21 Ağustos 2026<br>Cuma</time></dd>
+              </div>
+              <div>
+                <dt>
+                  <span class="sr-only">Kına saati</span>
+                  <svg class="detail-icon" viewBox="0 0 48 48" aria-hidden="true">
+                    <circle cx="24" cy="24" r="18"></circle>
+                    <path d="M24 13v12l8 5"></path>
+                  </svg>
+                </dt>
+                <dd><time datetime="19:00">19:00</time></dd>
+              </div>
+              <div>
+                <dt>
+                  <span class="sr-only">Kına adresi</span>
+                  <svg class="detail-icon pin-icon" viewBox="0 0 48 48" aria-hidden="true">
+                    <path d="M24 44s15-14 15-27A15 15 0 0 0 9 17c0 13 15 27 15 27Z"></path>
+                    <circle cx="24" cy="17" r="5"></circle>
+                  </svg>
+                </dt>
+                <dd>Salon Marmaris<br><small>Güven, Palar Sk., No: 22, Güngören/İstanbul</small></dd>
+              </div>
+            </dl>
+          </section>
+        </div>
         <div class="content-actions">
           <button class="gold-button compact" id="locationShortcut"
-                  type="button" aria-controls="location">Konuma Git</button>
-          <button class="ghost-button compact" id="calendarButton" type="button">Takvime Ekle</button>
+                  type="button" aria-controls="location">Adreslere Git</button>
+          <button class="ghost-button compact" id="photoShortcut"
+                  type="button" aria-controls="photos">Anı Paylaşımına Git</button>
         </div>
       </article>
     </section>
 
     <section id="location" class="page reveal" aria-labelledby="locationTitle">
       <article class="invitation-content location-content">
-        <h2 id="locationTitle" class="section-title">Konum</h2>
+        <h2 id="locationTitle" class="section-title">Konumlar</h2>
         <div class="ornament" aria-hidden="true"><span></span>◆<span></span></div>
-        <svg class="location-pin" viewBox="0 0 48 48" aria-hidden="true">
-          <path d="M24 44s15-14 15-27A15 15 0 0 0 9 17c0 13 15 27 15 27Z"></path>
-          <circle cx="24" cy="17" r="5"></circle>
-        </svg>
-        <address>
-          <strong>Üsküdar Nikah Sarayı</strong>
-          Mimar Sinan, Çavuşdere Cd. No: 35<br>
-          Üsküdar / İstanbul
-        </address>
-        <a class="gold-button route-button" target="_blank" rel="noopener"
-           href="https://www.google.com/maps/search/?api=1&query=%C3%9Csk%C3%BCdar+Nikah+Saray%C4%B1%2C+Mimar+Sinan%2C+%C3%87avu%C5%9Fdere+Cd.+No%3A35%2C+%C3%9Csk%C3%BCdar%2F%C4%B0stanbul">
-          Yol Tarifi
-        </a>
-        <p class="closing-names">Zeyneb <span>&amp;</span> Veysel</p>
+        <div class="location-grid">
+          <section class="location-panel" aria-labelledby="weddingLocationTitle">
+            <svg class="location-pin" viewBox="0 0 48 48" aria-hidden="true">
+              <path d="M24 44s15-14 15-27A15 15 0 0 0 9 17c0 13 15 27 15 27Z"></path>
+              <circle cx="24" cy="17" r="5"></circle>
+            </svg>
+            <address>
+              <span id="weddingLocationTitle">Nikâh</span>
+              <strong>Üsküdar Nikah Sarayı</strong>
+              Mimar Sinan, Çavuşdere Cd. No: 35,<br>
+              Üsküdar / İstanbul
+            </address>
+            <a class="gold-button location-route-button" target="_blank" rel="noopener"
+               href="https://www.google.com/maps/search/?api=1&query=%C3%9Csk%C3%BCdar+Nikah+Saray%C4%B1%2C+Mimar+Sinan%2C+%C3%87avu%C5%9Fdere+Cd.+No%3A35%2C+%C3%9Csk%C3%BCdar%2F%C4%B0stanbul">
+              Nikâh Yol Tarifi
+            </a>
+          </section>
+
+          <section class="location-panel" aria-labelledby="hennaLocationTitle">
+            <svg class="location-pin" viewBox="0 0 48 48" aria-hidden="true">
+              <path d="M24 44s15-14 15-27A15 15 0 0 0 9 17c0 13 15 27 15 27Z"></path>
+              <circle cx="24" cy="17" r="5"></circle>
+            </svg>
+            <address>
+              <span id="hennaLocationTitle">Kına</span>
+              <strong>Salon Marmaris</strong>
+              Güven, Palar Sk. No: 22,<br>
+              Güngören / İstanbul
+            </address>
+            <a class="gold-button location-route-button" target="_blank" rel="noopener"
+               href="https://www.google.com/maps/search/?api=1&query=Salon+Marmaris%2C+G%C3%BCven%2C+Palar+Sk.+No%3A22%2C+G%C3%BCng%C3%B6ren%2F%C4%B0stanbul">
+              Kına Yol Tarifi
+            </a>
+          </section>
+        </div>
       </article>
     </section>
 

@@ -70,26 +70,45 @@ const observer = new IntersectionObserver((entries) => {
 },{threshold:.22});
 document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
-const weddingDate = new Date("2026-08-23T15:30:00+03:00");
-const countdownParts = {
-  days: document.getElementById("countdownDays"),
-  hours: document.getElementById("countdownHours"),
-  minutes: document.getElementById("countdownMinutes"),
-  seconds: document.getElementById("countdownSeconds")
-};
-
-function updateCountdown(){
-  const remaining = Math.max(0, weddingDate.getTime() - Date.now());
+function updateEventCountdown(eventDate, parts){
+  const remaining = Math.max(0, eventDate.getTime() - Date.now());
   const totalSeconds = Math.floor(remaining / 1000);
 
-  countdownParts.days.textContent = Math.floor(totalSeconds / 86400);
-  countdownParts.hours.textContent = String(Math.floor(totalSeconds / 3600) % 24).padStart(2, "0");
-  countdownParts.minutes.textContent = String(Math.floor(totalSeconds / 60) % 60).padStart(2, "0");
-  countdownParts.seconds.textContent = String(totalSeconds % 60).padStart(2, "0");
+  parts.days.textContent = Math.floor(totalSeconds / 86400);
+  parts.hours.textContent = String(Math.floor(totalSeconds / 3600) % 24).padStart(2, "0");
+  parts.minutes.textContent = String(Math.floor(totalSeconds / 60) % 60).padStart(2, "0");
+  parts.seconds.textContent = String(totalSeconds % 60).padStart(2, "0");
 }
 
-updateCountdown();
-window.setInterval(updateCountdown, 1000);
+const countdowns = [
+  {
+    date:new Date("2026-08-21T19:00:00+03:00"),
+    parts:{
+      days:document.getElementById("hennaCountdownDays"),
+      hours:document.getElementById("hennaCountdownHours"),
+      minutes:document.getElementById("hennaCountdownMinutes"),
+      seconds:document.getElementById("hennaCountdownSeconds")
+    }
+  },
+  {
+    date:new Date("2026-08-23T15:30:00+03:00"),
+    parts:{
+      days:document.getElementById("countdownDays"),
+      hours:document.getElementById("countdownHours"),
+      minutes:document.getElementById("countdownMinutes"),
+      seconds:document.getElementById("countdownSeconds")
+    }
+  }
+];
+
+function updateCountdowns(){
+  countdowns.forEach(countdown => {
+    updateEventCountdown(countdown.date, countdown.parts);
+  });
+}
+
+updateCountdowns();
+window.setInterval(updateCountdowns, 1000);
 
 const pages = [...document.querySelectorAll(".page")];
 
@@ -103,10 +122,17 @@ pages.forEach((page, index) => {
 
 const locationShortcut = document.getElementById("locationShortcut");
 const locationPage = document.getElementById("location");
+const photoShortcut = document.getElementById("photoShortcut");
+const photoPage = document.getElementById("photos");
 
 locationShortcut.addEventListener("click", event => {
   event.preventDefault();
   scrollToPage(locationPage);
+});
+
+photoShortcut.addEventListener("click", event => {
+  event.preventDefault();
+  scrollToPage(photoPage);
 });
 
 const ambient = document.querySelector(".ambient");
@@ -121,34 +147,3 @@ for(let i=0;i<18;i++){
   p.style.transform = `scale(${.7+Math.random()*.8})`;
   ambient.appendChild(p);
 }
-
-document.getElementById("calendarButton").addEventListener("click", () => {
-  const ics = [
-    "BEGIN:VCALENDAR",
-    "VERSION:2.0",
-    "PRODID:-//Zeyneb ve Veysel//Nikah Davetiyesi//TR",
-    "CALSCALE:GREGORIAN",
-    "METHOD:PUBLISH",
-    "X-WR-CALNAME:Zeyneb & Veysel Nikâh Töreni",
-    "BEGIN:VEVENT",
-    "UID:zeyneb-veysel-20260823@example.com",
-    "DTSTAMP:20260724T090000Z",
-    "DTSTART:20260823T123000Z",
-    "DTEND:20260823T143000Z",
-    "SUMMARY:Zeyneb & Veysel Nikâh Töreni",
-    "LOCATION:Üsküdar Nikah Sarayı\\, Mimar Sinan\\, Çavuşdere Cd. No:35\\, Üsküdar/İstanbul",
-    "DESCRIPTION:Gülümsememize şahit olun.",
-    "END:VEVENT",
-    "END:VCALENDAR"
-  ].join("\r\n");
-  const blob = new Blob([ics], {type:"text/calendar;charset=utf-8"});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "zeyneb-ve-veysel-nikah.ics";
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  URL.revokeObjectURL(url);
-  showToast("Takvim dosyası hazırlandı");
-});

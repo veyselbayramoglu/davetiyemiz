@@ -620,12 +620,26 @@ main::before{
 }
 .ceremony-content,
 .location-content{--content-scale:.86}
+.ceremony-content .section-title{
+  font-size:clamp(32px,8vw,50px);
+}
+.countdown-group{
+  display:grid;
+  gap:6px;
+  margin:-10px 0 12px;
+}
+.countdown-label{
+  margin:0 0 4px;
+  color:#76501c;
+  font-size:14px;
+  font-style:italic;
+}
 .countdown{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:7px;
   width:100%;
-  margin:-6px 0 16px;
+  margin:0;
 }
 .countdown div{
   padding:8px 3px 7px;
@@ -647,6 +661,73 @@ main::before{
   color:var(--ink);
   font-size:clamp(11px,2.8vw,14px);
   line-height:1;
+}
+.event-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px;
+}
+.event-card:nth-child(2){order:-1}
+.event-card{
+  min-width:0;
+  overflow:hidden;
+  border:1px solid rgba(180,122,31,.32);
+  border-radius:18px;
+  background:rgba(255,255,255,.22);
+}
+.event-card h3{
+  margin:0;
+  padding:8px 5px 6px;
+  border-bottom:1px solid rgba(180,122,31,.28);
+  color:var(--gold-dark);
+  font-size:clamp(20px,5vw,27px);
+  font-weight:500;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.event-details{
+  margin:0;
+  padding:0 5px;
+  text-align:left;
+}
+.event-details div{
+  display:grid;
+  grid-template-columns:32px minmax(0,1fr);
+  align-items:center;
+  gap:5px;
+  min-height:53px;
+  padding:6px 0;
+}
+.event-details div+div{
+  border-top:1px solid rgba(180,122,31,.25);
+}
+.event-details dt{
+  display:grid;
+  place-items:center;
+  color:var(--gold-dark);
+}
+.event-details .detail-icon{
+  width:29px;
+  height:29px;
+  stroke-width:2.5;
+}
+.event-details dd{
+  min-width:0;
+  margin:0;
+  overflow-wrap:anywhere;
+  font-size:clamp(14px,3.5vw,18px);
+  line-height:1.08;
+}
+.event-details small{
+  font-size:.73em;
+  line-height:1.12;
+}
+.ceremony-content .content-actions{
+  margin-top:12px;
+}
+.ceremony-content .compact{
+  padding:9px 5px;
+  font-size:14px;
 }
 .section-title{
   margin:0;
@@ -734,6 +815,52 @@ main::before{
   margin-bottom:8px;
   font-size:1.18em;
 }
+.location-grid{
+  display:grid;
+  gap:12px;
+}
+.location-panel:nth-child(2){order:-1}
+.location-panel{
+  display:grid;
+  grid-template-columns:58px minmax(0,1fr);
+  align-items:center;
+  gap:10px;
+  padding:12px 14px;
+  border:1px solid rgba(180,122,31,.32);
+  border-radius:21px;
+  background:rgba(255,255,255,.22);
+}
+.location-panel .location-pin{
+  width:50px;
+  height:50px;
+  margin:0;
+}
+.location-panel address{
+  text-align:left;
+  font-size:clamp(17px,4.2vw,23px);
+  line-height:1.16;
+}
+.location-panel address span{
+  display:block;
+  margin-bottom:2px;
+  color:var(--gold-dark);
+  font-size:.72em;
+  font-weight:500;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+.location-panel address strong{
+  margin-bottom:3px;
+  font-size:1.08em;
+}
+.location-route-button{
+  grid-column:1/-1;
+  display:inline-block;
+  width:min(230px,78%);
+  margin:1px auto 0;
+  padding:9px 12px;
+  font-size:15px;
+}
 .route-button{
   display:inline-block;
   width:min(240px,80%);
@@ -798,10 +925,33 @@ main::before{
   .invitation-content{padding:20px}
   .invitation-lead{margin-bottom:22px}
   .ceremony-details div{padding:10px 4px}
-  .countdown{
-    margin:-4px 0 10px;
+  .event-details div{
+    min-height:46px;
+    padding:4px 0;
   }
+  .countdown-group{
+    gap:4px;
+    margin:-6px 0 8px;
+  }
+  .countdown{margin:0}
   .countdown div{padding:6px 2px}
   .ornament{margin:8px 0 14px}
   .content-actions{margin-top:12px}
+  .location-grid{gap:8px}
+  .location-panel{padding:8px 12px}
+  .location-route-button{padding:7px 10px}
+}
+
+@media (orientation:landscape) and (max-height:600px){
+  .location-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  .location-panel{
+    grid-template-columns:46px minmax(0,1fr);
+    padding:8px 10px;
+  }
+  .location-panel .location-pin{
+    width:40px;
+    height:40px;
+  }
 }
