@@ -383,7 +383,7 @@ main{position:relative;z-index:2}
    boyutunda gösterilir, oran farkından kalan alan bulanık kopyayla dolar. */
 @media (max-width:600px), (orientation:landscape) and (max-height:600px){
   html{
-    scroll-snap-type:y mandatory;
+    scroll-snap-type:y proximity;
     scroll-padding:0;
   }
   .opening{
@@ -413,7 +413,7 @@ main{position:relative;z-index:2}
     padding:0;
     gap:0;
     scroll-snap-align:start;
-    scroll-snap-stop:always;
+    scroll-snap-stop:normal;
   }
   .invitation-card{
     width:100vw;
@@ -493,7 +493,7 @@ main{position:relative;z-index:2}
 }
 
 /* Tek sabit zemin üzerinde kayan metin sahneleri */
-html{scroll-snap-type:y mandatory}
+html{scroll-snap-type:y proximity}
 main::before{
   content:"";
   position:fixed;
@@ -521,7 +521,7 @@ main::before{
     max(28px,var(--safe-l));
   background:none;
   scroll-snap-align:start;
-  scroll-snap-stop:always;
+  scroll-snap-stop:normal;
   cursor:pointer;
   -webkit-tap-highlight-color:transparent;
   -webkit-user-select:none;
