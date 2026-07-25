@@ -616,13 +616,13 @@ main::before{
 }
 
 .invitation-content.first-visit-nudge{
-  animation:firstVisitNudge 1.45s cubic-bezier(.35,.05,.2,1);
+  animation:firstVisitNudge 3.8s cubic-bezier(.35,.05,.2,1) infinite;
 }
 
 @keyframes firstVisitNudge{
-  0%,100%{translate:0 0}
-  42%{translate:0 -20px}
-  68%{translate:0 -20px}
+  0%,24%,100%{translate:0 0}
+  44%,62%{translate:0 -20px}
+  82%{translate:0 0}
 }
 .invitation-lead{
   margin:0 0 clamp(24px,6vh,54px);
@@ -928,7 +928,13 @@ main::before{
   margin:28px 0 0;
   font:clamp(36px,9vw,56px)/1 "Great Vibes",cursive;
 }
-.closing-names span{color:var(--gold)}
+.closing-names span{
+  color:var(--gold);
+  font-family:"Cormorant Garamond",Georgia,serif;
+  font-size:.78em;
+  font-style:normal;
+  font-weight:500;
+}
 .photo-content{--content-scale:.9}
 .photo-icon{
   display:block;

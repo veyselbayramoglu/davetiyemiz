@@ -170,9 +170,6 @@ function showFirstVisitHint(page){
 
     hintedPages.add(page);
     content.classList.add("first-visit-nudge");
-    content.addEventListener("animationend", () => {
-      content.classList.remove("first-visit-nudge");
-    }, {once:true});
   }, 1100);
 
   pendingPageHints.set(page, timer);
