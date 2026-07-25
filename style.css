@@ -383,7 +383,7 @@ main{position:relative;z-index:2}
    boyutunda gösterilir, oran farkından kalan alan bulanık kopyayla dolar. */
 @media (max-width:600px), (orientation:landscape) and (max-height:600px){
   html{
-    scroll-snap-type:y proximity;
+    scroll-snap-type:y mandatory;
     scroll-padding:0;
   }
   .opening{
@@ -493,7 +493,7 @@ main{position:relative;z-index:2}
 }
 
 /* Tek sabit zemin üzerinde kayan metin sahneleri */
-html{scroll-snap-type:y proximity}
+html{scroll-snap-type:y mandatory}
 main::before{
   content:"";
   position:fixed;
