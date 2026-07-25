@@ -71,10 +71,13 @@ main{position:relative;z-index:2}
   background:
     radial-gradient(circle at center,rgba(255,255,255,.35),transparent 35%),
     linear-gradient(135deg,#e9dfd1,#f8f2e9 52%,#e5d8c7);
-  transition:opacity .9s ease,visibility .9s ease;
+  transition:
+    opacity 1.05s ease 1.15s,
+    visibility 0s linear 2.2s;
 }
 .js .opening{display:grid}
-.opening.opened{opacity:0;visibility:hidden;pointer-events:none}
+.opening.opened{opacity:0;visibility:hidden}
+.opening.finished{pointer-events:none}
 .opening-card{
   position:relative;
   width:min(96vw,460px,calc((100svh - var(--open-pad-y)) * 1150 / 1368));
@@ -90,7 +93,7 @@ main{position:relative;z-index:2}
   width:50.1%;
   background-repeat:no-repeat;
   background-size:cover;
-  transition:transform 1.35s cubic-bezier(.2,.76,.18,1);
+  transition:transform 2.2s cubic-bezier(.2,.76,.18,1);
   backface-visibility:hidden;
 }
 .door-left{
@@ -503,14 +506,14 @@ main::before{
   background:transparent;
   box-shadow:none;
   transition:
-    opacity .7s ease,
-    transform .8s cubic-bezier(.2,.72,.2,1);
+    opacity 1.15s ease,
+    transform 1.45s cubic-bezier(.2,.72,.2,1);
 }
 .js .invitation-content{
   opacity:0;
-  transform:translateY(42px);
+  transform:translateY(90px);
 }
-.reveal.visible .invitation-content{
+.invitation-open .reveal.visible .invitation-content{
   opacity:1;
   transform:none;
 }

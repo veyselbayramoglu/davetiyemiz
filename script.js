@@ -15,8 +15,12 @@ function showToast(message){
 
 seal.addEventListener("click", () => {
   opening.classList.add("opened");
-  body.classList.remove("locked");
-  window.setTimeout(() => document.querySelector(".hero").scrollIntoView({behavior:"smooth"}), 760);
+  window.setTimeout(() => body.classList.add("invitation-open"), 1150);
+  window.setTimeout(() => {
+    opening.classList.add("finished");
+    body.classList.remove("locked");
+    document.querySelector(".hero").scrollIntoView({behavior:"smooth",block:"start"});
+  }, 2250);
 });
 
 const observer = new IntersectionObserver((entries) => {
@@ -27,7 +31,24 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
 const pages = [...document.querySelectorAll(".page")];
+let settleTimer;
+let settleTarget;
+
+const settleObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(!entry.isIntersecting || !body.classList.contains("invitation-open")) return;
+    settleTarget = entry.target;
+    window.clearTimeout(settleTimer);
+    settleTimer = window.setTimeout(() => {
+      if(settleTarget === entry.target){
+        entry.target.scrollIntoView({behavior:"smooth",block:"start"});
+      }
+    }, 1550);
+  });
+},{threshold:.58});
+
 pages.forEach((page, index) => {
+  settleObserver.observe(page);
   page.addEventListener("click", event => {
     if(event.target.closest("a,button")) return;
     const nextPage = pages[index + 1];
