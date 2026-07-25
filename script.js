@@ -16,8 +16,31 @@ const seal = document.getElementById("seal");
 const toast = document.getElementById("toast");
 const music = document.getElementById("backgroundMusic");
 const musicToggle = document.getElementById("musicToggle");
+const musicPreferenceKey = "davetiyemiz-music-muted";
+let musicMutedByUser = readMusicPreference();
 
-music.volume = .24;
+music.volume = .08;
+
+function readMusicPreference(){
+  try{
+    return window.localStorage.getItem(musicPreferenceKey) === "true";
+  }catch{
+    return false;
+  }
+}
+
+function saveMusicPreference(isMuted){
+  musicMutedByUser = isMuted;
+  try{
+    window.localStorage.setItem(musicPreferenceKey, String(isMuted));
+  }catch{
+    // Depolama kapalıysa tercih yalnızca mevcut oturumda korunur.
+  }
+}
+
+function pauseForBackground(){
+  if(!music.paused) music.pause();
+}
 
 function updateMusicButton(){
   const isPlaying = !music.paused;
@@ -38,7 +61,11 @@ seal.addEventListener("click", () => {
   resetInitialPosition();
   scrollToPage(document.querySelector(".hero"), "auto");
   musicToggle.hidden = false;
-  music.play().then(updateMusicButton).catch(updateMusicButton);
+  if(musicMutedByUser){
+    updateMusicButton();
+  }else{
+    music.play().then(updateMusicButton).catch(updateMusicButton);
+  }
   opening.classList.add("opened");
   window.setTimeout(() => body.classList.add("invitation-open"), 1350);
   window.setTimeout(() => {
@@ -50,11 +77,13 @@ seal.addEventListener("click", () => {
 
 musicToggle.addEventListener("click", () => {
   if(music.paused){
+    saveMusicPreference(false);
     music.play().then(updateMusicButton).catch(() => {
       showToast("Müzik tarayıcı tarafından başlatılamadı");
       updateMusicButton();
     });
   }else{
+    saveMusicPreference(true);
     music.pause();
     updateMusicButton();
   }
@@ -62,6 +91,11 @@ musicToggle.addEventListener("click", () => {
 
 music.addEventListener("play", updateMusicButton);
 music.addEventListener("pause", updateMusicButton);
+document.addEventListener("visibilitychange", () => {
+  if(document.hidden) pauseForBackground();
+});
+window.addEventListener("pagehide", pauseForBackground);
+window.addEventListener("blur", pauseForBackground);
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -113,6 +147,16 @@ window.setInterval(updateCountdowns, 1000);
 const pages = [...document.querySelectorAll(".page")];
 
 pages.forEach((page, index) => {
+  const cue = document.createElement("div");
+  const isLastPage = index === pages.length - 1;
+  cue.className = `page-cue${isLastPage ? " page-cue-up" : ""}`;
+  cue.setAttribute("aria-hidden", "true");
+
+  const cueText = document.createElement("span");
+  cueText.textContent = isLastPage ? "Yukarı kaydır" : "Kaydır veya dokun";
+  cue.appendChild(cueText);
+  page.appendChild(cue);
+
   page.addEventListener("click", event => {
     if(event.target.closest("a,button")) return;
     const nextPage = pages[index + 1];
@@ -133,6 +177,10 @@ locationShortcut.addEventListener("click", event => {
 photoShortcut.addEventListener("click", event => {
   event.preventDefault();
   scrollToPage(photoPage);
+});
+
+document.querySelectorAll('a[target="_blank"]').forEach(link => {
+  link.addEventListener("click", pauseForBackground);
 });
 
 const ambient = document.querySelector(".ambient");
