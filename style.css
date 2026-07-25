@@ -132,16 +132,14 @@ main{
 .seal-pulse{
   position:absolute;
   left:50%;
-  top:44%;
+  top:47.2%;
   z-index:2;
-  width:28%;
-  aspect-ratio:1;
-  border-radius:50%;
-  clip-path:circle(48%);
-  background-image:url("assets/cover-v2.jpg");
-  background-position:50% 44%;
+  width:27%;
+  aspect-ratio:310/342;
+  background-image:url("assets/seal-v2.png");
+  background-position:center;
   background-repeat:no-repeat;
-  background-size:357.15% auto;
+  background-size:contain;
   filter:drop-shadow(0 8px 8px rgba(87,52,16,.28));
   pointer-events:none;
   transform:translate(-50%,-50%);
@@ -615,6 +613,16 @@ main::before{
 .invitation-open .reveal.visible .invitation-content{
   opacity:1;
   transform:scale(var(--content-scale));
+}
+
+.invitation-content.first-visit-nudge{
+  animation:firstVisitNudge 1.45s cubic-bezier(.35,.05,.2,1);
+}
+
+@keyframes firstVisitNudge{
+  0%,100%{translate:0 0}
+  42%{translate:0 -20px}
+  68%{translate:0 -20px}
 }
 .invitation-lead{
   margin:0 0 clamp(24px,6vh,54px);

@@ -67,7 +67,10 @@ seal.addEventListener("click", () => {
     music.play().then(updateMusicButton).catch(updateMusicButton);
   }
   opening.classList.add("opened");
-  window.setTimeout(() => body.classList.add("invitation-open"), 1350);
+  window.setTimeout(() => {
+    body.classList.add("invitation-open");
+    showFirstVisitHint(document.querySelector(".hero"));
+  }, 1350);
   window.setTimeout(() => {
     opening.classList.add("finished");
     body.classList.remove("locked");
@@ -145,8 +148,54 @@ updateCountdowns();
 window.setInterval(updateCountdowns, 1000);
 
 const pages = [...document.querySelectorAll(".page")];
+const hintedPages = new WeakSet();
+const pendingPageHints = new WeakMap();
+
+function pageIsCentered(page){
+  const rect = page.getBoundingClientRect();
+  const viewportHeight = scroller.clientHeight;
+  const visibleHeight = Math.min(rect.bottom, viewportHeight) - Math.max(rect.top, 0);
+  return visibleHeight >= Math.min(rect.height, viewportHeight) * .7;
+}
+
+function showFirstVisitHint(page){
+  if(hintedPages.has(page) || pendingPageHints.has(page) || !body.classList.contains("invitation-open")) return;
+
+  const timer = window.setTimeout(() => {
+    pendingPageHints.delete(page);
+    if(hintedPages.has(page) || !pageIsCentered(page)) return;
+
+    const content = page.querySelector(".invitation-content");
+    if(!content) return;
+
+    hintedPages.add(page);
+    content.classList.add("first-visit-nudge");
+    content.addEventListener("animationend", () => {
+      content.classList.remove("first-visit-nudge");
+    }, {once:true});
+  }, 1100);
+
+  pendingPageHints.set(page, timer);
+}
+
+const pageHintObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.intersectionRatio >= .7){
+      showFirstVisitHint(entry.target);
+      return;
+    }
+
+    const timer = pendingPageHints.get(entry.target);
+    if(timer){
+      window.clearTimeout(timer);
+      pendingPageHints.delete(entry.target);
+    }
+  });
+}, {root:scroller, threshold:[0, .7]});
 
 pages.forEach((page, index) => {
+  pageHintObserver.observe(page);
+
   const cue = document.createElement("div");
   const isLastPage = index === pages.length - 1;
   cue.className = `page-cue${isLastPage ? " page-cue-up" : ""}`;
