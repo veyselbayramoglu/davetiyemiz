@@ -523,6 +523,9 @@ main::before{
   scroll-snap-align:start;
   scroll-snap-stop:always;
   cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+  -webkit-user-select:none;
+  user-select:none;
 }
 .invitation-content{
   --content-scale:1;
