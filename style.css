@@ -494,15 +494,6 @@ main{position:relative;z-index:2}
 
 /* Tek sabit zemin üzerinde kayan metin sahneleri */
 html{scroll-snap-type:y mandatory}
-
-/* iOS'ta (WebKit) adres çubuğu gizlenip/gösterilirken görünür alan yüksekliği
-   geçiş sırasında değişiyor; "mandatory" snap bu ara kareyi referans alıp
-   yanlış (genelde bir önceki) sayfaya geri atabiliyor. Android/Chrome'da bu
-   sorun yok, o yüzden düzeltmeyi sadece iOS WebKit'e uyguluyoruz. */
-@supports (-webkit-touch-callout:none){
-  html{scroll-snap-type:y proximity}
-}
-
 main::before{
   content:"";
   position:fixed;
