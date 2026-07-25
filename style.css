@@ -471,12 +471,10 @@ main::before{
   height:100svh;
   z-index:0;
   background-color:#fbf7f1;
-  background-image:
-    url("assets/invitation-background-v2.jpg"),
-    url("assets/invitation-background-v2.jpg");
-  background-position:center,center;
-  background-repeat:no-repeat,no-repeat;
-  background-size:contain,cover;
+  background-image:url("assets/invitation-background-v2.jpg");
+  background-position:center;
+  background-repeat:no-repeat;
+  background-size:contain;
 }
 .page{
   position:relative;
