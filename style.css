@@ -16,21 +16,37 @@ html{
   scroll-behavior:smooth;
   scrollbar-gutter:stable;
   width:100%;
-  min-height:100%;
+  height:100%;
+  overflow:hidden;
 }
 body{
   margin:0;
   width:100%;
-  min-height:100%;
+  height:100%;
   color:var(--ink);
   background:
     radial-gradient(circle at 20% 10%,rgba(255,255,255,.9),transparent 34rem),
     linear-gradient(135deg,#eee4d6,#f8f2e9 45%,#e9ddcc);
   font-family:"Cormorant Garamond",Georgia,serif;
-  overflow-x:hidden;
+  overflow:hidden;
 }
 body.locked{overflow:hidden}
-main{position:relative;z-index:2}
+body.locked main{overflow-y:hidden}
+main{
+  position:relative;
+  z-index:2;
+  width:100%;
+  height:100vh;
+  height:100svh;
+  overflow-x:hidden;
+  overflow-y:auto;
+  overscroll-behavior-y:contain;
+  scrollbar-gutter:stable;
+  scroll-behavior:smooth;
+  scroll-snap-type:y mandatory;
+  touch-action:pan-y;
+  -webkit-overflow-scrolling:touch;
+}
 
 .ambient{
   position:fixed;
@@ -383,7 +399,7 @@ main{position:relative;z-index:2}
    boyutunda gösterilir, oran farkından kalan alan bulanık kopyayla dolar. */
 @media (max-width:600px), (orientation:landscape) and (max-height:600px){
   html{
-    scroll-snap-type:y mandatory;
+    scroll-snap-type:none;
     scroll-padding:0;
   }
   .opening{
@@ -413,7 +429,7 @@ main{position:relative;z-index:2}
     padding:0;
     gap:0;
     scroll-snap-align:start;
-    scroll-snap-stop:always;
+    scroll-snap-stop:normal;
   }
   .invitation-card{
     width:100vw;
@@ -493,7 +509,7 @@ main{position:relative;z-index:2}
 }
 
 /* Tek sabit zemin üzerinde kayan metin sahneleri */
-html{scroll-snap-type:y mandatory}
+html{scroll-snap-type:none}
 main::before{
   content:"";
   position:fixed;
@@ -512,8 +528,8 @@ main::before{
   position:relative;
   z-index:1;
   width:100%;
-  min-height:100vh;
-  min-height:100svh;
+  height:100%;
+  min-height:100%;
   padding:
     max(54px,var(--safe-t))
     max(28px,var(--safe-r))
@@ -521,7 +537,7 @@ main::before{
     max(28px,var(--safe-l));
   background:none;
   scroll-snap-align:start;
-  scroll-snap-stop:always;
+  scroll-snap-stop:normal;
   cursor:pointer;
   -webkit-tap-highlight-color:transparent;
   -webkit-user-select:none;

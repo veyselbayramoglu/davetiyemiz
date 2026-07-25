@@ -1,7 +1,11 @@
 
 document.documentElement.classList.add("js");
+const scroller = document.querySelector("main");
 if("scrollRestoration" in history) history.scrollRestoration = "manual";
-const resetInitialPosition = () => window.scrollTo({top:0,left:0,behavior:"auto"});
+const resetInitialPosition = () => scroller.scrollTo({top:0,left:0,behavior:"auto"});
+const scrollToPage = (page, behavior = "smooth") => {
+  scroller.scrollTo({top:page.offsetTop,left:0,behavior});
+};
 resetInitialPosition();
 window.addEventListener("pageshow", () => window.requestAnimationFrame(resetInitialPosition));
 
@@ -32,7 +36,7 @@ function showToast(message){
 
 seal.addEventListener("click", () => {
   resetInitialPosition();
-  document.querySelector(".hero").scrollIntoView({behavior:"auto",block:"start"});
+  scrollToPage(document.querySelector(".hero"), "auto");
   musicToggle.hidden = false;
   music.play().then(updateMusicButton).catch(updateMusicButton);
   opening.classList.add("opened");
@@ -40,7 +44,7 @@ seal.addEventListener("click", () => {
   window.setTimeout(() => {
     opening.classList.add("finished");
     body.classList.remove("locked");
-    document.querySelector(".hero").scrollIntoView({behavior:"smooth",block:"start"});
+    scrollToPage(document.querySelector(".hero"));
   }, 2750);
 });
 
@@ -72,16 +76,16 @@ pages.forEach((page, index) => {
   page.addEventListener("click", event => {
     if(event.target.closest("a,button")) return;
     const nextPage = pages[index + 1];
-    if(nextPage) nextPage.scrollIntoView({behavior:"smooth",block:"start"});
+    if(nextPage) scrollToPage(nextPage);
   });
 });
 
-const locationShortcut = document.querySelector('a[href="#location"]');
+const locationShortcut = document.getElementById("locationShortcut");
 const locationPage = document.getElementById("location");
 
 locationShortcut.addEventListener("click", event => {
   event.preventDefault();
-  locationPage.scrollIntoView({behavior:"smooth",block:"start"});
+  scrollToPage(locationPage);
 });
 
 const ambient = document.querySelector(".ambient");
