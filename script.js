@@ -76,7 +76,7 @@ pages.forEach((page, index) => {
   });
 });
 
-const locationShortcut = document.querySelector('a[href="#location"]');
+const locationShortcut = document.getElementById("locationShortcut");
 const locationPage = document.getElementById("location");
 
 locationShortcut.addEventListener("click", event => {
