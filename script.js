@@ -78,7 +78,7 @@ function cancelSettle(){
 
 const settleObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    if(!entry.isIntersecting){
+    if(entry.intersectionRatio < .58){
       if(settleTarget === entry.target) cancelSettle();
       return;
     }
@@ -120,6 +120,15 @@ pages.forEach((page, index) => {
     const nextPage = pages[index + 1];
     if(nextPage) nextPage.scrollIntoView({behavior:"smooth"});
   });
+});
+
+const locationShortcut = document.querySelector('a[href="#location"]');
+const locationPage = document.getElementById("location");
+
+locationShortcut.addEventListener("click", event => {
+  event.preventDefault();
+  cancelSettle();
+  locationPage.scrollIntoView({behavior:"smooth",block:"start"});
 });
 
 const ambient = document.querySelector(".ambient");
