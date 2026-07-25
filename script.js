@@ -61,7 +61,7 @@ music.addEventListener("pause", updateMusicButton);
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    if(entry.isIntersecting) entry.target.classList.add("visible");
+    entry.target.classList.toggle("visible", entry.intersectionRatio >= .22);
   });
 },{threshold:.22});
 document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
