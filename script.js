@@ -70,22 +70,52 @@ const pages = [...document.querySelectorAll(".page")];
 let settleTimer;
 let settleTarget;
 
+function cancelSettle(){
+  window.clearTimeout(settleTimer);
+  settleTimer = undefined;
+  settleTarget = undefined;
+}
+
 const settleObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    if(!entry.isIntersecting || !body.classList.contains("invitation-open")) return;
+    if(!entry.isIntersecting){
+      if(settleTarget === entry.target) cancelSettle();
+      return;
+    }
+    if(!body.classList.contains("invitation-open")) return;
     settleTarget = entry.target;
     window.clearTimeout(settleTimer);
     settleTimer = window.setTimeout(() => {
       if(settleTarget === entry.target){
         entry.target.scrollIntoView({behavior:"smooth",block:"start"});
+        settleTimer = undefined;
       }
     }, 1850);
   });
 },{threshold:.58});
 
 pages.forEach((page, index) => {
+  let pointerStart;
+
   settleObserver.observe(page);
-  page.addEventListener("click", event => {
+
+  page.addEventListener("pointerdown", event => {
+    cancelSettle();
+    pointerStart = {x:event.clientX,y:event.clientY,id:event.pointerId};
+  });
+
+  page.addEventListener("pointercancel", () => {
+    pointerStart = undefined;
+  });
+
+  page.addEventListener("pointerup", event => {
+    if(!pointerStart || pointerStart.id !== event.pointerId) return;
+    const distance = Math.hypot(
+      event.clientX - pointerStart.x,
+      event.clientY - pointerStart.y
+    );
+    pointerStart = undefined;
+    if(distance > 14) return;
     if(event.target.closest("a,button")) return;
     const nextPage = pages[index + 1];
     if(nextPage) nextPage.scrollIntoView({behavior:"smooth"});
