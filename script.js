@@ -1,10 +1,27 @@
 
 document.documentElement.classList.add("js");
+if("scrollRestoration" in history) history.scrollRestoration = "manual";
+const resetInitialPosition = () => window.scrollTo({top:0,left:0,behavior:"auto"});
+resetInitialPosition();
+window.addEventListener("pageshow", () => window.requestAnimationFrame(resetInitialPosition));
+
 const body = document.body;
 body.classList.add("locked");
 const opening = document.getElementById("opening");
 const seal = document.getElementById("seal");
 const toast = document.getElementById("toast");
+const music = document.getElementById("backgroundMusic");
+const musicToggle = document.getElementById("musicToggle");
+
+music.volume = .24;
+
+function updateMusicButton(){
+  const isPlaying = !music.paused;
+  musicToggle.classList.toggle("paused", !isPlaying);
+  musicToggle.setAttribute("aria-label", isPlaying ? "Müziği durdur" : "Müziği oynat");
+  musicToggle.title = isPlaying ? "Müziği durdur" : "Müziği oynat";
+  musicToggle.querySelector("span").textContent = isPlaying ? "♫" : "♪";
+}
 
 function showToast(message){
   toast.textContent = message;
@@ -14,14 +31,33 @@ function showToast(message){
 }
 
 seal.addEventListener("click", () => {
+  resetInitialPosition();
+  document.querySelector(".hero").scrollIntoView({behavior:"auto",block:"start"});
+  musicToggle.hidden = false;
+  music.play().then(updateMusicButton).catch(updateMusicButton);
   opening.classList.add("opened");
-  window.setTimeout(() => body.classList.add("invitation-open"), 1150);
+  window.setTimeout(() => body.classList.add("invitation-open"), 1350);
   window.setTimeout(() => {
     opening.classList.add("finished");
     body.classList.remove("locked");
     document.querySelector(".hero").scrollIntoView({behavior:"smooth",block:"start"});
-  }, 2250);
+  }, 2750);
 });
+
+musicToggle.addEventListener("click", () => {
+  if(music.paused){
+    music.play().then(updateMusicButton).catch(() => {
+      showToast("Müzik tarayıcı tarafından başlatılamadı");
+      updateMusicButton();
+    });
+  }else{
+    music.pause();
+    updateMusicButton();
+  }
+});
+
+music.addEventListener("play", updateMusicButton);
+music.addEventListener("pause", updateMusicButton);
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -43,7 +79,7 @@ const settleObserver = new IntersectionObserver((entries) => {
       if(settleTarget === entry.target){
         entry.target.scrollIntoView({behavior:"smooth",block:"start"});
       }
-    }, 1550);
+    }, 1850);
   });
 },{threshold:.58});
 
