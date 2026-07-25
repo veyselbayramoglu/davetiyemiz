@@ -26,6 +26,15 @@ const observer = new IntersectionObserver((entries) => {
 },{threshold:.22});
 document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
+const pages = [...document.querySelectorAll(".page")];
+pages.forEach((page, index) => {
+  page.addEventListener("click", event => {
+    if(event.target.closest("a,button")) return;
+    const nextPage = pages[index + 1];
+    if(nextPage) nextPage.scrollIntoView({behavior:"smooth"});
+  });
+});
+
 const ambient = document.querySelector(".ambient");
 for(let i=0;i<18;i++){
   const p = document.createElement("i");
