@@ -71,11 +71,11 @@ seal.addEventListener("click", () => {
     body.classList.add("invitation-open");
     showFirstVisitHint(document.querySelector(".hero"));
   }, 1350);
-  window.setTimeout(() => {
-    opening.classList.add("finished");
-    body.classList.remove("locked");
-    scrollToPage(document.querySelector(".hero"));
-  }, 2750);
+  // window.setTimeout(() => {
+  //   opening.classList.add("finished");
+  //   body.classList.remove("locked");
+  //   scrollToPage(document.querySelector(".hero"));
+  // }, 2750);
 });
 
 musicToggle.addEventListener("click", () => {
