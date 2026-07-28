@@ -54,7 +54,7 @@ Değişikliklerden sonra özellikle şu akışlar kontrol edilmelidir:
 - Etkinlik tarihleri ve geri sayımlar: `index.html` ve `script.js`
 - Etkinlik sonrası geçiş zamanı: `script.js` içindeki `postEventDate`
 - Konum ve fotoğraf yükleme bağlantıları: `index.html`
-- Sosyal medya önizleme görseli: `index.html` ve `assets/preview.jpg`
+- Sosyal medya önizleme görseli: `index.html` ve `assets/preview.webp`
 - Arka plan müziği: `assets/zv.mp3`
 
 ## Yayınlama

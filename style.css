@@ -116,14 +116,14 @@ main{
 .door-left{
   left:0;
   transform-origin:left center;
-  background-image:url("assets/cover-left-v2.jpg");
+  background-image:url("assets/cover-left-v2.webp");
   background-position:left center;
   border-radius:31px 0 0 31px;
 }
 .door-right{
   right:0;
   transform-origin:right center;
-  background-image:url("assets/cover-right-v2.jpg");
+  background-image:url("assets/cover-right-v2.webp");
   background-position:right center;
   border-radius:0 31px 31px 0;
 }
@@ -565,7 +565,7 @@ main::before{
   height:100svh;
   z-index:0;
   background-color:#fbf7f1;
-  background-image:url("assets/invitation-background-v2.jpg");
+  background-image:url("assets/invitation-background-v2.webp");
   background-position:center;
   background-repeat:no-repeat;
   background-size:contain;
