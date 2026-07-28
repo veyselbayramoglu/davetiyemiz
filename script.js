@@ -138,6 +138,20 @@ const countdowns = [
   }
 ];
 
+const postEventDate = new Date("2026-08-23T16:00:00+03:00");
+const ceremonyPage = document.getElementById("ceremony");
+const locationPage = document.getElementById("location");
+const postEventPage = document.getElementById("postEvent");
+let postEventActive = Date.now() >= postEventDate.getTime();
+
+function applyPostEventVisibility(){
+  ceremonyPage.hidden = postEventActive;
+  locationPage.hidden = postEventActive;
+  postEventPage.hidden = !postEventActive;
+}
+
+applyPostEventVisibility();
+
 function updateCountdowns(){
   countdowns.forEach(countdown => {
     updateEventCountdown(countdown.date, countdown.parts);
@@ -147,7 +161,7 @@ function updateCountdowns(){
 updateCountdowns();
 window.setInterval(updateCountdowns, 1000);
 
-const pages = [...document.querySelectorAll(".page")];
+let pages = [];
 const hintedPages = new WeakSet();
 const pendingPageHints = new WeakMap();
 
@@ -191,30 +205,55 @@ const pageHintObserver = new IntersectionObserver(entries => {
   });
 }, {root:scroller, threshold:[0, .7]});
 
-pages.forEach((page, index) => {
-  pageHintObserver.observe(page);
+function configurePages(){
+  pageHintObserver.disconnect();
+  document.querySelectorAll(".page-cue").forEach(cue => cue.remove());
+  pages = [...document.querySelectorAll(".page:not([hidden])")];
 
-  if(index < pages.length - 1){
-    const cue = document.createElement("div");
-    cue.className = "page-cue page-cue-up";
-    cue.setAttribute("aria-hidden", "true");
+  pages.forEach((page, index) => {
+    pageHintObserver.observe(page);
 
-    const cueText = document.createElement("span");
-    cueText.textContent = "Kaydır";
-    cue.appendChild(cueText);
-    page.appendChild(cue);
-  }
+    if(index < pages.length - 1){
+      const cue = document.createElement("div");
+      cue.className = "page-cue page-cue-up";
+      cue.setAttribute("aria-hidden", "true");
 
-  page.addEventListener("click", event => {
-    if(event.target.closest("a,button")) return;
-    const nextPage = pages[index + 1];
-    if(nextPage) scrollToPage(nextPage);
+      const cueText = document.createElement("span");
+      cueText.textContent = "Kaydır";
+      cue.appendChild(cueText);
+      page.appendChild(cue);
+    }
   });
+}
+
+configurePages();
+
+scroller.addEventListener("click", event => {
+  if(event.target.closest("a,button")) return;
+  const page = event.target.closest(".page");
+  const nextPage = pages[pages.indexOf(page) + 1];
+  if(nextPage) scrollToPage(nextPage);
 });
 
+function activatePostEventMode(){
+  if(postEventActive || Date.now() < postEventDate.getTime()) return;
+
+  const currentPageWasReplaced =
+    pageIsCentered(ceremonyPage) || pageIsCentered(locationPage);
+
+  postEventActive = true;
+  applyPostEventVisibility();
+  configurePages();
+  observer.observe(postEventPage);
+
+  if(currentPageWasReplaced) scrollToPage(postEventPage, "auto");
+}
+
+window.setInterval(activatePostEventMode, 1000);
+
 const locationShortcut = document.getElementById("locationShortcut");
-const locationPage = document.getElementById("location");
 const photoShortcut = document.getElementById("photoShortcut");
+const postEventPhotoShortcut = document.getElementById("postEventPhotoShortcut");
 const photoPage = document.getElementById("photos");
 
 locationShortcut.addEventListener("click", event => {
@@ -223,6 +262,11 @@ locationShortcut.addEventListener("click", event => {
 });
 
 photoShortcut.addEventListener("click", event => {
+  event.preventDefault();
+  scrollToPage(photoPage);
+});
+
+postEventPhotoShortcut.addEventListener("click", event => {
   event.preventDefault();
   scrollToPage(photoPage);
 });
