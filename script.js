@@ -42,6 +42,15 @@ function pauseForBackground(){
   if(!music.paused) music.pause();
 }
 
+function resumeMusicAfterReturn(){
+  if(document.hidden ||
+     musicMutedByUser ||
+     !body.classList.contains("invitation-open") ||
+     !music.paused) return;
+
+  music.play().then(updateMusicButton).catch(updateMusicButton);
+}
+
 function updateMusicButton(){
   const isPlaying = !music.paused;
   musicToggle.classList.toggle("paused", !isPlaying);
@@ -95,10 +104,16 @@ musicToggle.addEventListener("click", () => {
 music.addEventListener("play", updateMusicButton);
 music.addEventListener("pause", updateMusicButton);
 document.addEventListener("visibilitychange", () => {
-  if(document.hidden) pauseForBackground();
+  if(document.hidden){
+    pauseForBackground();
+  }else{
+    resumeMusicAfterReturn();
+  }
 });
 window.addEventListener("pagehide", pauseForBackground);
 window.addEventListener("blur", pauseForBackground);
+window.addEventListener("focus", resumeMusicAfterReturn);
+window.addEventListener("pageshow", resumeMusicAfterReturn);
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
