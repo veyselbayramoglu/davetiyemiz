@@ -153,7 +153,7 @@ const countdowns = [
   }
 ];
 
-const postEventDate = new Date("2026-08-23T16:00:00+03:00");
+const postEventDate = new Date("2026-08-23T15:44:00+03:00");
 const ceremonyPage = document.getElementById("ceremony");
 const locationPage = document.getElementById("location");
 const postEventPage = document.getElementById("postEvent");

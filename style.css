@@ -658,6 +658,45 @@ main::before{
   font:400 36px/1 Georgia,serif;
   transform:translate(-50%,-50%);
 }
+.combined-intro{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  width:min(92vw,600px);
+}
+.combined-intro .invitation-lead{
+  margin:0;
+  font-size:clamp(21px,5.2vw,32px);
+}
+.combined-intro .couple-names{
+  margin:clamp(17px,3.5vh,30px) 0;
+  font-size:clamp(56px,13.5vw,88px);
+}
+.combined-intro .couple-names b{
+  height:30px;
+  margin:9px 0 8px;
+}
+.combined-intro .couple-names b::after{
+  font-size:30px;
+}
+.combined-invitation{
+  margin:0 0 clamp(20px,4vh,34px);
+  font-size:clamp(21px,5.2vw,31px);
+  font-style:italic;
+  font-weight:500;
+  line-height:1.25;
+}
+.combined-intro .families{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:clamp(12px,4vw,28px);
+  width:100%;
+}
+.combined-intro .families strong{
+  font-size:clamp(19px,5vw,31px);
+}
+.combined-intro .families span{
+  font-size:clamp(23px,6vw,37px);
+}
 .families-content .invitation-lead{margin-bottom:clamp(28px,6vh,50px)}
 .families{
   display:grid;
@@ -1012,6 +1051,16 @@ main::before{
       max(18px,var(--safe-l));
   }
   .invitation-content{padding:20px}
+  .combined-intro{padding:14px 20px}
+  .combined-intro .couple-names{
+    margin:12px 0;
+    font-size:clamp(50px,12vw,72px);
+  }
+  .combined-intro .couple-names b{
+    height:24px;
+    margin:5px 0;
+  }
+  .combined-invitation{margin-bottom:14px}
   .invitation-lead{margin-bottom:22px}
   .ceremony-details div{padding:10px 4px}
   .event-details div{
