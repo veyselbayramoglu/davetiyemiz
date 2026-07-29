@@ -747,85 +747,86 @@ main::before{
 .ceremony-content,
 .location-content{--content-scale:.86}
 .ceremony-content .section-title{
-  font-size:clamp(32px,8vw,50px);
+  font-size:clamp(29px,7.2vw,44px);
 }
 .countdown-group{
   display:grid;
-  gap:6px;
-  margin:-10px 0 12px;
+  gap:10px;
+  margin:-4px 0 18px;
 }
 .countdown-label{
-  margin:0 0 4px;
-  color:#76501c;
-  font-size:14px;
+  margin:0 0 5px;
+  color:rgba(23,50,47,.68);
+  font-size:13px;
   font-style:italic;
+  font-weight:400;
 }
 .countdown{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:7px;
+  gap:6px;
   width:100%;
   margin:0;
 }
 .countdown div{
-  padding:8px 3px 7px;
-  border:1px solid rgba(180,122,31,.3);
-  border-radius:13px;
-  background:rgba(255,255,255,.2);
+  padding:6px 3px 5px;
+  border:1px solid rgba(180,122,31,.22);
+  border-radius:11px;
+  background:rgba(255,255,255,.14);
 }
 .countdown strong,
 .countdown span{display:block}
 .countdown strong{
   color:var(--gold-dark);
-  font-size:clamp(23px,5.5vw,31px);
+  font-size:clamp(18px,4.5vw,25px);
   font-weight:500;
   line-height:1;
   font-variant-numeric:tabular-nums;
 }
 .countdown span{
-  margin-top:4px;
-  color:var(--ink);
-  font-size:clamp(11px,2.8vw,14px);
+  margin-top:3px;
+  color:rgba(23,50,47,.64);
+  font-size:clamp(10px,2.4vw,12px);
   line-height:1;
 }
 .event-grid{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:8px;
+  gap:12px;
 }
 .event-card:nth-child(2){order:-1}
 .event-card{
   min-width:0;
   overflow:hidden;
-  border:1px solid rgba(180,122,31,.32);
+  border:1px solid rgba(180,122,31,.25);
   border-radius:18px;
-  background:rgba(255,255,255,.22);
+  background:rgba(255,255,255,.18);
 }
 .event-card h3{
   margin:0;
-  padding:8px 5px 6px;
-  border-bottom:1px solid rgba(180,122,31,.28);
+  padding:10px 5px 8px;
+  border-bottom:1px solid rgba(180,122,31,.2);
   color:var(--gold-dark);
-  font-size:clamp(20px,5vw,27px);
+  font-size:clamp(19px,4.7vw,25px);
   font-weight:500;
   letter-spacing:.08em;
   text-transform:uppercase;
 }
 .event-details{
   margin:0;
-  padding:0 5px;
+  padding:4px 8px;
   text-align:left;
 }
 .event-details div{
   display:grid;
-  grid-template-columns:32px minmax(0,1fr);
+  grid-template-columns:30px minmax(0,1fr);
   align-items:center;
-  gap:5px;
-  min-height:53px;
-  padding:6px 0;
+  gap:8px;
+  min-height:59px;
+  padding:9px 0;
 }
 .event-details div+div{
-  border-top:1px solid rgba(180,122,31,.25);
+  border-top:1px solid rgba(180,122,31,.17);
 }
 .event-details dt{
   display:grid;
@@ -833,27 +834,35 @@ main::before{
   color:var(--gold-dark);
 }
 .event-details .detail-icon{
-  width:29px;
-  height:29px;
-  stroke-width:2.5;
+  width:27px;
+  height:27px;
+  stroke-width:2.25;
 }
 .event-details dd{
   min-width:0;
   margin:0;
   overflow-wrap:anywhere;
-  font-size:clamp(14px,3.5vw,18px);
-  line-height:1.08;
+  color:rgba(23,50,47,.72);
+  font-size:clamp(14px,3.4vw,17px);
+  font-weight:400;
+  line-height:1.15;
 }
-.event-details small{
-  font-size:.73em;
-  line-height:1.12;
+.event-details div:nth-child(1) dd,
+.event-details div:nth-child(2) dd,
+.event-details div:nth-child(3) dd{
+  color:var(--ink);
+  font-weight:500;
+}
+.event-details div:nth-child(2) dd{
+  color:var(--gold-dark);
+  font-size:clamp(18px,4.5vw,24px);
+  font-variant-numeric:tabular-nums;
+}
+.event-details div:nth-child(3) dt{
+  color:rgba(138,90,20,.68);
 }
 .ceremony-content .content-actions{
-  margin-top:12px;
-}
-.ceremony-content .compact{
-  padding:9px 5px;
-  font-size:14px;
+  margin-top:18px;
 }
 .section-title{
   margin:0;
