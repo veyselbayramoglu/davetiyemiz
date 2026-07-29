@@ -662,15 +662,27 @@ main::before{
   display:flex;
   flex-direction:column;
   align-items:center;
+  justify-content:center;
   width:min(92vw,600px);
+  text-align:center;
+}
+.combined-intro > *{
+  width:100%;
 }
 .combined-intro .invitation-lead{
   margin:0;
   font-size:clamp(21px,5.2vw,32px);
+  text-align:center;
 }
 .combined-intro .couple-names{
   margin:clamp(17px,3.5vh,30px) 0;
   font-size:clamp(56px,13.5vw,88px);
+  text-align:center;
+}
+.combined-intro .couple-names span{
+  display:block;
+  width:100%;
+  text-align:center;
 }
 .combined-intro .couple-names b{
   height:30px;
@@ -685,17 +697,35 @@ main::before{
   font-style:italic;
   font-weight:500;
   line-height:1.25;
+  text-align:center;
 }
 .combined-intro .families{
   grid-template-columns:repeat(2,minmax(0,1fr));
   gap:clamp(12px,4vw,28px);
   width:100%;
+  align-items:start;
+  text-align:center;
+}
+.combined-intro .families p{
+  display:flex;
+  min-width:0;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
 }
 .combined-intro .families strong{
-  font-size:clamp(19px,5vw,31px);
+  width:100%;
+  max-width:100%;
+  font-size:clamp(16px,4vw,26px);
+  letter-spacing:.06em;
+  text-indent:.06em;
+  line-height:1.1;
+  white-space:nowrap;
 }
 .combined-intro .families span{
+  width:100%;
   font-size:clamp(23px,6vw,37px);
+  text-align:center;
 }
 .families-content .invitation-lead{margin-bottom:clamp(28px,6vh,50px)}
 .families{
